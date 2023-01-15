@@ -64,7 +64,7 @@ public class FidCheapestPrice {
     public void findCheapestFlight(Node from, Node to, int numOfStops) {
 
         Queue<Node> minQueue = new PriorityQueue<>(
-                Comparator.comparingInt(Node::getStops).thenComparingInt(Node::getDistance));
+                Comparator.comparingInt(Node::getDistance).thenComparingInt(Node::getStops));
 
         from.setDistance(0);
         from.setStops(0);

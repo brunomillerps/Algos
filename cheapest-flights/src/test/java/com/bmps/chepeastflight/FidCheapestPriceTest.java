@@ -121,4 +121,28 @@ public class FidCheapestPriceTest {
         Assertions.assertEquals(10, nodeF.getDistance());
         Assertions.assertEquals(List.of(nodeA), nodeF.getShortestPath());
     }
+
+    @Test
+    public void shouldReturn_3_ACDF() {
+        FidCheapestPrice fcp = new FidCheapestPrice();
+
+        Node nodeA = new Node("A");
+        Node nodeB = new Node("B");
+        Node nodeC = new Node("C");
+        Node nodeD = new Node("D");
+        Node nodeF = new Node("F");
+
+        nodeA.addEdge(nodeB, 10);
+        nodeA.addEdge(nodeC, 1);
+        nodeB.addEdge(nodeD, 10);
+        nodeC.addEdge(nodeD, 1);
+        nodeB.addEdge(nodeF, 900);
+        nodeD.addEdge(nodeF, 1);
+        nodeA.addEdge(nodeF, 10);
+
+        fcp.findCheapestFlight(nodeA, nodeF, 5);
+
+        Assertions.assertEquals(3, nodeF.getDistance());
+        Assertions.assertEquals(List.of(nodeA, nodeC, nodeD), nodeF.getShortestPath());
+    }
 }
