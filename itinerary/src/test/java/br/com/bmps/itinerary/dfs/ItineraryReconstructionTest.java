@@ -95,13 +95,9 @@ class ItineraryReconstructionTest {
 
     @Test
     void test6() {
-        List<List<String>> tickets = Arrays.asList(
-            Arrays.asList("JFK", "SFO"),
-            Arrays.asList("JFK", "ATL"),
-            Arrays.asList("SFO", "ATL"),
-            Arrays.asList("ATL", "JFK"),
-            Arrays.asList("ATL", "SFO")
-        );
+        List<List<String>> tickets = Arrays.asList(Arrays.asList("JFK", "SFO"), Arrays.asList("JFK", "ATL"),
+                                                   Arrays.asList("SFO", "ATL"), Arrays.asList("ATL", "JFK"),
+                                                   Arrays.asList("ATL", "SFO"));
 
         var itinerary = new ItineraryReconstruction();
 
@@ -114,10 +110,7 @@ class ItineraryReconstructionTest {
 
     @Test
     void test7() {
-        List<List<String>> tickets = Arrays.asList(
-            Arrays.asList("A", "B"),
-            Arrays.asList("A", "C"),
-            Arrays.asList("C", "A"));
+        List<List<String>> tickets = Arrays.asList(Arrays.asList("A", "B"), Arrays.asList("A", "C"), Arrays.asList("C", "A"));
 
         var itinerary = new ItineraryReconstruction();
 

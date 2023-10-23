@@ -1,50 +1,42 @@
 package br.com.bmps.itinerary.dfs;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 public class ItineraryReconstruction {
 
     public List<String> findItinerary(List<List<String>> tickets, String from) {
 
-        // natural sort the input
-        tickets.sort(Comparator
-                         .comparing((List<String> airports) -> airports.get(0))
-                         .thenComparing(airports -> airports.get(1)));
-
-        Map<String, LinkedList<String>> graph = new HashMap<>();
+        Map<String, PriorityQueue<String>> graph = new HashMap<>();
 
         for (var ticket : tickets) {
             var departure = ticket.get(0);
             var arrives = ticket.get(1);
 
-            graph.computeIfAbsent(departure, t ->  new LinkedList<>())
-                 .add(arrives);
+            graph
+                .computeIfAbsent(departure, v -> new PriorityQueue<>())
+                .add(arrives);
         }
 
-        var result = new ArrayList<String>();
+        var itinerary = new LinkedList<String>();
 
-        dfs(graph, from, result);
+        dfs(from, graph, itinerary);
 
-        Collections.reverse(result);
-
-        return result;
+        return itinerary;
     }
 
-    private void dfs(Map<String, LinkedList<String>> graph, String from, List<String> result) {
-        var departures = graph.get(from);
+    private void dfs(String from, Map<String, PriorityQueue<String>> graph, LinkedList<String> itinerary) {
 
-        while (departures != null && !departures.isEmpty()) {
-            var to = departures.poll();
-            dfs(graph, to, result);
+        var arrivals = graph.get(from);
+
+        while (arrivals != null && !arrivals.isEmpty()) {
+            var arriveTo = arrivals.poll();
+            dfs(arriveTo, graph, itinerary);
         }
 
-        result.add(from);
+        itinerary.addFirst(from);
     }
-
 }
