@@ -74,7 +74,7 @@ public class InDegree {
             res[i] = curNode;
             i--;
 
-            for (Node<String> adjacentNode : curNode.getAdjacentNodes()) {
+            for (var adjacentNode : curNode.getAdjacentNodes()) {
                 if (inDegree.get(adjacentNode) > 0) {
                     this.inDegree.merge(adjacentNode, -1, Integer::sum);
                     if (inDegree.get(adjacentNode) == 0) {

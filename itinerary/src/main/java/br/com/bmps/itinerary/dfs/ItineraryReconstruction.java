@@ -1,42 +1,39 @@
 package br.com.bmps.itinerary.dfs;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.PriorityQueue;
 
 public class ItineraryReconstruction {
 
     public List<String> findItinerary(List<List<String>> tickets, String from) {
-
-        Map<String, PriorityQueue<String>> graph = new HashMap<>();
+        var graph = new HashMap<String, PriorityQueue<String>>();
 
         for (var ticket : tickets) {
-            var departure = ticket.get(0);
-            var arrives = ticket.get(1);
-
             graph
-                .computeIfAbsent(departure, v -> new PriorityQueue<>())
-                .add(arrives);
+                .computeIfAbsent(ticket.get(0), d -> new PriorityQueue<>())
+                .add(ticket.get(1));
         }
 
-        var itinerary = new LinkedList<String>();
+        var result = new ArrayList<String>();
 
-        dfs(from, graph, itinerary);
+        dfs(from, graph, result);
 
-        return itinerary;
+        Collections.reverse(result);
+
+        return result;
     }
 
-    private void dfs(String from, Map<String, PriorityQueue<String>> graph, LinkedList<String> itinerary) {
+    private void dfs(String from, HashMap<String, PriorityQueue<String>> graph, ArrayList<String> result) {
+        var destinations = graph.get(from);
 
-        var arrivals = graph.get(from);
-
-        while (arrivals != null && !arrivals.isEmpty()) {
-            var arriveTo = arrivals.poll();
-            dfs(arriveTo, graph, itinerary);
+        while (destinations != null && !destinations.isEmpty()) {
+            var dest = destinations.poll();
+            dfs(dest, graph, result);
         }
 
-        itinerary.addFirst(from);
+        result.add(from);
     }
 }
