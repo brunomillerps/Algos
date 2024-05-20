@@ -23,23 +23,17 @@ public class Main {
     private static int[] twoSum(int[] nums, int target) {
 
         Map<Integer, Integer> complements = new HashMap<>();
-        List<List<Integer>> result = new ArrayList<>();
 
         // 2 7 10 15
         for (int i = 0; i < nums.length; i++) {
-            
-            var complementIndex = complements.get(nums[i]);
-            if (complementIndex != null) {
-                result.add(List.of(i, complementIndex));
+            var elIndx = complements.get(target-nums[i]);
+            if ( elIndx != null) {
+                return new int[] {elIndx, };
             }
 
-            var sb = new StringBuilder();
-            sb.indexOf("A");
-
-            complements.put(target - nums[i], i);
+            complements.put(nums[i], i);
         }
 
-        System.out.println(result.toString());
         return nums;
     }
 } 

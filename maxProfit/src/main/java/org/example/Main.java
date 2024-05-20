@@ -29,7 +29,7 @@ public class Main {
 
         var maxProfit = 0;
 
-            for (int i = 1; i < price.length; i++) {
+        for (int i = 1; i < price.length; i++) {
             if (price[i] > price[i - 1]) {
                 maxProfit += price[i] - price[i - 1];
                 whenBuyAndSell.add(new BuyAndSellDay(i-1, i));

@@ -7,9 +7,7 @@ import java.util.List;
 
 We would like to implement an API for users to query availability for a single hotel.
 
-The hotel availability
-dataset
-is in the following format:
+The hotel availability dataset is in the following format:
 
 { date: [ { price, features, availability }, ... ], ... }
 
@@ -20,14 +18,14 @@ user input parameters:
 	•	checkout (integer), checkout date
 	•	features (array of strings), features requested
 	•	rooms (integer), the number of rooms requested
-The
-output
-is a list of combinations of eligible rooms over the given checkin and checkout interval:
-[
- {
- price, features, availability
-},
-… ]
+
+  The output is a list of combinations of eligible rooms over the given checkin and checkout interval:
+    [
+      {
+      price, features, availability
+      },
+      
+    … ]
  -------------------
 Example dataset
 {

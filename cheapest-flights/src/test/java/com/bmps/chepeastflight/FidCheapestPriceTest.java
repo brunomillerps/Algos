@@ -2,9 +2,17 @@ package com.bmps.chepeastflight;
 
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class FidCheapestPriceTest {
+
+    @BeforeAll
+    public void setupAll() {
+        System.out.println("Setting up for each test");
+    }
 
     @Test
     public void test() {
