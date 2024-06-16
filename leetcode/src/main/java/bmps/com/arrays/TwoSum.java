@@ -1,8 +1,6 @@
 package bmps.com.arrays;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class TwoSum {
 
@@ -12,6 +10,11 @@ public class TwoSum {
 
         System.out.println(Arrays.toString(twoSum(input, target)));
         System.out.println(Arrays.toString(twoSumUnsorted(input, target)));
+
+
+        input = new int[]{2, 7, 11, 3, 6, 3, 6};
+
+        System.out.println(allTwoSum(input, 9));
     }
 
     /*
@@ -34,8 +37,29 @@ public class TwoSum {
         return new int[]{-1,-1};
     }
 
+    public static int allTwoSum(int[] nums, int target) {
+        int numOfSums = 0;
+        var map = new  HashMap<Integer, Integer>();
+        var seen = new HashSet<String>();
+
+        for (int i = 0; i < nums.length; i++) {
+            var key = String.valueOf(Math.abs(target - nums[i]));
+            if (!seen.contains(key)) {
+                if (map.containsKey(target - nums[i])) {
+                    numOfSums++;
+                    seen.add(key);
+                }
+                map.put(nums[i], i);
+            }
+        }
+
+        return numOfSums;
+    }
+
     public static int[] twoSum(int[] items, int target) {
         Arrays.sort(items);
+
+        int l1 = 0;
 
         int l = 0, r = items.length - 1;
 
@@ -51,4 +75,6 @@ public class TwoSum {
 
         return new int[]{-1,-1};
     }
+
+
 }

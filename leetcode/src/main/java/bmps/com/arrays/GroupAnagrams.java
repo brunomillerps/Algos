@@ -16,12 +16,12 @@ public class GroupAnagrams {
 
         Map<String, List<String>> mapRes = new HashMap<>();
 
-        for (int i = 0; i < strs.length; i++) {
-            var charArray = strs[i].toCharArray();
+        for (String str : strs) {
+            var charArray = str.toCharArray();
             Arrays.sort(charArray);
             var key = String.valueOf(charArray);
             mapRes.putIfAbsent(key, new ArrayList<>());
-            mapRes.get(key).add(strs[i]);
+            mapRes.get(key).add(str);
         }
         return new ArrayList<>(mapRes.values());
     }

@@ -1,8 +1,8 @@
 package bmps.com.arrays;
 
-import java.util.Arrays;
+import java.util.*;
 
-public class KthLargestElements {
+public class KthLargestElementsHeapify {
 
     public static void main(String[] args) {
         System.out.println("Hello world!");
@@ -13,11 +13,16 @@ public class KthLargestElements {
     }
 
     private static int[] kth(int[] els, int k) {
-        Arrays.sort(els);
+
+        Queue<Integer> queue = new PriorityQueue<>(Comparator.<Integer>naturalOrder().reversed());
         int[] res = new int[k];
 
-        for (int i = 0; i < res.length; i++) {
-            res[i] = els[els.length-1-i];
+        for (int el : els) {
+            queue.add(el);
+        }
+
+        for (int i = 0; i < k && !queue.isEmpty(); i++) {
+            res[i] = queue.poll();
         }
 
         return res;
