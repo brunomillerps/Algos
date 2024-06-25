@@ -1,5 +1,6 @@
 package bmps.com.arrays;
 
+import bmps.com.dsa.arrays.MergeIntervals;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,5 +1,6 @@
 package bmps.com.arrays;
 
+import bmps.com.dsa.arrays.easy.RemoveDuplicatesSortedArray;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
